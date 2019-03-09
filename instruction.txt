@@ -1,5 +1,0 @@
-http://www.aisangam.com/blog/real-time-face-recognition-using-facenet/
-
-Face net to watch: https://github.com/davidsandberg/facenet
-
-for manual training (human interaction) use next project code snipets: https://github.com/vudung45/FaceRec
