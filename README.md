@@ -1,4 +1,6 @@
-### Installation Python Libraries:
+### Under development!
+
+## Installation Python Libraries:
 
 Minimal required:
 - Tensorflow (1.4.0)
@@ -6,7 +8,7 @@ Minimal required:
 - Scikit-learn (0.19.1)
 - Opencv (2.4.9.1)
 
-### Usage:
+## Usage:
  1. You must have all of the libraries above
  2. cd path/to/repository/folder
  3. python train_main.py
