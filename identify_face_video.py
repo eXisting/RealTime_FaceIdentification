@@ -66,7 +66,7 @@ def main(args):
             while True:
                 ret, frame = video_capture.read()
 
-                frame = cv2.resize(frame, (480,720), fx=0.5, fy=0.5)    #resize frame (optional)
+                frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)    #resize frame (optional)
 
                 # every 2 fps
                 curTime = time.time() + 1
@@ -164,7 +164,7 @@ def parse_arguments(argv):
 
     parser.add_argument('mode', type=str, choices=['ROUTE', 'LOCAL_CAMERA'],
         help='Indicates whether use route connected video capture device or just use connected camera', default='ROUTE')
-    parser.add_argument('route', type=str,
+    parser.add_argument('--route', type=str,
         help='URL to connected video capture device.', default="http://192.168.0.100:8080/video")
     
     return parser.parse_args(argv)
