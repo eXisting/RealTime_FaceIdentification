@@ -1,4 +1,4 @@
-# Facenet: Real-time face recognition using deep learning Tensorflow 
+# Info: Real time face recognition system using deep learning Tensorflow & FaceNet
 
 Here is the implementation of face recognition in real time. Solution can fit various types of video sources thanks for OpenCV. For example, in this case, video feed from camera that connect over Wi-Fi local network is been used.
 
