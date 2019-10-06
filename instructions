@@ -1,0 +1,22 @@
+1. Align: 
+cd D:\Work\Projects\FaceNet\src
+python align_dataset_mtcnn.py D:\Work\Projects\data\training D:\Work\Projects\data\cropped_182 --image_size 182 --margin 44 --gpu_memory_fraction 0.8
+
+2. Training model: 
+cd D:\Work\Projects\FaceNet\src
+python train_softmax.py --logs_base_dir D:\Work\Projects\logs --models_base_dir D:\Work\Projects\FaceNet\models --data_dir D:\Work\Projects\data\cropped_182 --image_size 182 --model_def models.inception_resnet_v1 --optimizer ADAM --learning_rate -1 --max_nrof_epochs 150 --keep_probability 0.8 --random_crop --random_flip --use_fixed_image_standardization --learning_rate_schedule_file D:\Work\Projects\data\learning_rate_schedule_classifier_casia.txt --weight_decay 5e-4 --embedding_size 512 --validation_set_split_ratio 0.05 --validate_every_n_epochs 5 --prelogits_norm_loss_factor 5e-4 --gpu_memory_fraction 0.7
+
+python train_tripletloss.py --logs_base_dir D:\Work\Projects\logs --models_base_dir D:\Work\Projects\FaceNet\models  --gpu_memory_fraction 0.7 --pretrained_model D:\Work\Projects\FaceNet\models\20180408-102900.pb  --data_dir D:\Work\Projects\data\cropped_182 --model_def models.inception_resnet_v1 --max_nrof_epochs 10 --batch_size 50 --image_size 182 --embedding_size 512 --random_crop --random_flip --keep_probability 0.8 --optimizer ADAM  --learning_rate -1 --learning_rate_schedule_file D:\Work\Projects\data\learning_rate_schedule_classifier_casia.txt
+
+without errors
+python train_softmax.py --logs_base_dir D:\Work\Projects\logs --models_base_dir D:\Work\Projects\FaceNet\models --data_dir D:\Work\Projects\data\cropped_182 --image_size 182 --model_def models.inception_resnet_v1 --optimizer ADAM --learning_rate -1 --max_nrof_epochs 2 --keep_probability 0.8 --random_crop --random_flip --use_fixed_image_standardization --learning_rate_schedule_file D:\Work\Projects\data\learning_rate_schedule_classifier_casia.txt --weight_decay 5e-4 --embedding_size 512 --validation_set_split_ratio 0.05 --validate_every_n_epochs 1 --prelogits_norm_loss_factor 5e-4 --gpu_memory_fraction 0.7 --batch_size 10 --epoch_size 100
+
+last
+python train_softmax.py --logs_base_dir D:\Work\Projects\logs --models_base_dir D:\Work\Projects\FaceNet\models --data_dir D:\Work\Projects\data\cropped_182 --image_size 182 --model_def models.inception_resnet_v1 --optimizer ADAM --learning_rate -1 --max_nrof_epochs 10 --keep_probability 0.95 --random_crop --random_flip --use_fixed_image_standardization --learning_rate_schedule_file D:\Work\Projects\data\learning_rate_schedule_classifier_casia.txt --weight_decay 5e-4 --embedding_size 512 --validation_set_split_ratio 0.05 --validate_every_n_epochs 3 --prelogits_norm_loss_factor 5e-4 --gpu_memory_fraction 0.8 --batch_size 50 --epoch_size 20 --lfw_distance_metric 1 --lfw_use_flipped_images  --lfw_subtract_mean --lfw_dir D:\Work\Projects\FaceNet\lfw_cropped_182 --lfw_pairs D:\Work\Projects\FaceNet\data\pairs.txt
+
+3. Validate
+python validate_on_lfw.py D:\Work\Projects\FaceNet\lfw_cropped_182 D:\Work\Projects\FaceNet\models\20180408-102900.pb --distance_metric 1 --use_flipped_images --subtract_mean --use_fixed_image_standardization
+
+
+python classifier.py TRAIN  D:\Work\Projects\System\aligned_data D:\Work\Projects\System\model D:\Work\Projects\System\class\classifier.pkl --batch_size 100 --min_nrof_images_per_class 10 --nrof_train_images_per_class 10 --use_split_dataset
+python face_recognition_image.py D:\Work\Projects\data\training\Roman\IMG_20190331_141410.jpg
